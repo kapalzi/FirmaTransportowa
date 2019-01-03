@@ -1,0 +1,27 @@
+﻿<Window x:Class="BazyDanychProjekt.PojazdController"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BazyDanychProjekt"
+        mc:Ignorable="d"
+        Title="PojazdController" Height="447.368" Width="422.368">
+    <Grid>
+        <ListBox Name="listBox" HorizontalAlignment="Left" Height="402" Margin="10,10,0,0" VerticalAlignment="Top" Width="209" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button Content="Wyświetl informacje" HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="182" Height="45" Click="Button_Click"/>
+        <Button Name="saveEditBtn" IsEnabled="False" Content="Zapisz edycje" HorizontalAlignment="Left" Margin="224,60,0,0" VerticalAlignment="Top" Width="182" Height="45" Click="Button_Click_1"/>
+        <Button Content="Przypisz do Zlecenia" HorizontalAlignment="Left" Margin="224,110,0,0" VerticalAlignment="Top" Width="182" Height="45" Click="Button_Click_2"/>
+        <Label Content="Nr Rejestracyjny" HorizontalAlignment="Left" Margin="224,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="Rodzaj" HorizontalAlignment="Left" Margin="224,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,2.287"/>
+        <Label Content="Marka" HorizontalAlignment="Left" Margin="224,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,2.287"/>
+        <Label Content="Model" HorizontalAlignment="Left" Margin="224,253,0,0" VerticalAlignment="Top"/>
+        <Label Content="Sprawność" HorizontalAlignment="Left" Margin="224,284,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,2.287"/>
+        <Label Content="Dostępność" HorizontalAlignment="Left" Margin="224,315,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.674,2.287"/>
+        <TextBox Name="nrRejestracyjnyTextBox" HorizontalAlignment="Left" Height="23" Margin="324,164,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" IsEnabled="False"/>
+        <TextBox Name="rodzajTextBox" HorizontalAlignment="Left" Height="23" Margin="324,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+        <TextBox Name="markaTextBox" HorizontalAlignment="Left" Height="23" Margin="324,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+        <TextBox Name="modelTextBox" HorizontalAlignment="Left" Height="23" Margin="324,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+        <TextBox Name="sprawnoscTextBox" HorizontalAlignment="Left" Height="23" Margin="324,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+        <TextBox Name="dostepnoscTextBox" HorizontalAlignment="Left" Height="23" Margin="324,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82"/>
+    </Grid>
+</Window>

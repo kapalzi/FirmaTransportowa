@@ -1,0 +1,23 @@
+﻿<Window x:Class="BazyDanychProjekt.AdresController"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BazyDanychProjekt"
+        mc:Ignorable="d"
+        Title="Adres" Height="292.678" Width="497.283">
+    <Grid>
+        <TextBox Name="miejscowoscTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="305,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="20" TextWrapping="Wrap" Text="Miejscowość" VerticalAlignment="Top" Height="37" Width="290"/>
+        <TextBox Name="kodPocztowyTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="305,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,52,0,0" FontSize="20" TextWrapping="Wrap" Text="Kod Pocztowy" VerticalAlignment="Top" Height="37" Width="290"/>
+        <TextBox Name="nrDomuTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="305,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Left" Margin="11,136,0,0" FontSize="20" TextWrapping="Wrap" Text="Numer Domu" VerticalAlignment="Top" Height="37" Width="290"/>
+        <TextBlock HorizontalAlignment="Left" Margin="11,177,0,0" FontSize="20" TextWrapping="Wrap" Text="Numer Mieszkania" VerticalAlignment="Top" Height="37" Width="290"/>
+        <Button HorizontalAlignment="Left" Height="36" FontSize="20" Margin="304,220,0,0" Content="Dodaj Adres" VerticalAlignment="Top" Width="180" Click="Button_Click"/>
+        <TextBox Name="nrMieszkaniaTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="305,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBox Name="ulicaTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="304,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,94,0,0" FontSize="20" TextWrapping="Wrap" Text="Ulica" VerticalAlignment="Top" Height="37" Width="290"/>
+
+    </Grid>
+</Window>

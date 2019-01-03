@@ -1,0 +1,23 @@
+﻿<Window x:Class="BazyDanychProjekt.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BazyDanychProjekt"
+        mc:Ignorable="d"
+        Title="Logowanie" Height="196" Width="348">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="189*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="loginTextField"  HorizontalAlignment="Left" Height="32" Margin="7.5,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="152" Grid.Column="1"/>
+        <TextBox Name="passwordTextField" HorizontalAlignment="Left" Height="30" Margin="7.5,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="152" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="6,10,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="152" Height="30" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="6,60,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Width="152" Height="30" Grid.ColumnSpan="2"/>
+        <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="65.5,110,0,0" VerticalAlignment="Top" Width="94" Height="38" Grid.Column="1" Click="Button_Click"/>
+        <CheckBox Content="Klient" Name="klientCheckBox" HorizontalAlignment="Left" Margin="6,95,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Pracownik" Name="pracownikCheckBox" HorizontalAlignment="Left" Margin="6,115,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
