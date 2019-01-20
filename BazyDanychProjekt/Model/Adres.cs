@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BazyDanychProjekt.Model
 {
-    class Adres
+    public class Adres
     {
         public int idAdresu;
         public string ulica;

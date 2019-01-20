@@ -9,9 +9,10 @@ using System.Windows;
 
 namespace BazyDanychProjekt
 {
-    class DBController
+    public class DBController
     {
         static String connectionString;
+        static String user;
 
         public static bool loginToDb(String login, String password)
         {
@@ -22,6 +23,7 @@ namespace BazyDanychProjekt
             {
                 sqlConnection.Open();
                 connectionString = conStr;
+                user = login;
 
                 sqlConnection.Close();
                 return true;
@@ -68,15 +70,49 @@ namespace BazyDanychProjekt
             return null;
         }
 
-        public static void addZamowienie(Zamowienie zamowienie)
+        public static Zamowienie getZamowienieForUser()
+        {
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+            MySqlDataReader reader = null;
+            try
+            {
+                sqlConnection.Open();
+                String sql = "select * from zlecenia where user ='" + user+"'";
+                MySqlCommand cmd = new MySqlCommand(sql, sqlConnection);
+                reader = cmd.ExecuteReader();
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                List<Zamowienie> zamowienia = new List<Zamowienie>();
+                while (reader.Read())
+                {
+                    for (int lp = 0; lp < reader.FieldCount; lp++)
+                    {
+                        dict.Add(reader.GetName(lp), reader.GetValue(lp));
+                    }
+                    Zamowienie tmp = new Zamowienie(dict);
+                    zamowienia.Add(tmp);
+                    dict = new Dictionary<string, object>();
+                }
+
+                sqlConnection.Close();
+                return zamowienia.First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex);
+            }
+
+            return null;
+        }
+
+        public static bool addZamowienie(Zamowienie zamowienie)
         {
             MySqlConnection sqlConnection = new MySqlConnection(connectionString);
             try
             {
                 sqlConnection.Open();
                 String sql = "insert into zlecenia(idPracownika,idPojazdu,idOsoby,miejsceOdbioru,miejsceDoreczenia,cena," +
-                    "dataZamowienia,terminZlecenia,wagaPaczki,stanZamowienia,sciezkaDoPlikuFaktury)" +
-                    " values(2,0,@idOsoby, @miejsceOdbioru, @miejsceDoreczenia, @cena, @dataZamowienia, @terminZlecenia, @wagaPaczki, @stanZamowienia, @sciezkaDoPlikuFaktury)";
+                    "dataZamowienia,terminZlecenia,wagaPaczki,stanZamowienia,sciezkaDoPlikuFaktury,user)" +
+                    " values(2,0,@idOsoby, @miejsceOdbioru, @miejsceDoreczenia, @cena, @dataZamowienia, @terminZlecenia, @wagaPaczki, @stanZamowienia, @sciezkaDoPlikuFaktury, @user)";
                 MySqlCommand cmd = new MySqlCommand(sql, sqlConnection);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@idOsoby", zamowienie.idOsoby);
@@ -88,12 +124,14 @@ namespace BazyDanychProjekt
                 cmd.Parameters.AddWithValue("@wagaPaczki", zamowienie.wagaPaczki);
                 cmd.Parameters.AddWithValue("@stanZamowienia", "Nowe");
                 cmd.Parameters.AddWithValue("@sciezkaDoPlikuFaktury", "C:");
+                cmd.Parameters.AddWithValue("@user", user);
                 cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex);
+                return false;
             }
             finally
             {
@@ -102,9 +140,10 @@ namespace BazyDanychProjekt
                     sqlConnection.Close();
                 }
             }
+            return true;
         }
 
-        public static void addAdres(Adres adres)
+        public static bool addAdres(Adres adres)
         {
             MySqlConnection sqlConnection = new MySqlConnection(connectionString);
             try
@@ -124,6 +163,7 @@ namespace BazyDanychProjekt
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex);
+                return false;
             }
             finally
             {
@@ -132,6 +172,41 @@ namespace BazyDanychProjekt
                     sqlConnection.Close();
                 }
             }
+            return true;
+        }
+
+        public static Adres getAdres(int id)
+        {
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+            MySqlDataReader reader = null;
+            try
+            {
+                sqlConnection.Open();
+                String sql = "select * from adresy where idAdresu=" + id.ToString();
+                MySqlCommand cmd = new MySqlCommand(sql, sqlConnection);
+                reader = cmd.ExecuteReader();
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                List<Adres> osoby = new List<Adres>();
+                while (reader.Read())
+                {
+                    for (int lp = 0; lp < reader.FieldCount; lp++)
+                    {
+                        dict.Add(reader.GetName(lp), reader.GetValue(lp));
+                    }
+                    Adres tmp = new Adres(dict);
+                    osoby.Add(tmp);
+                    dict = new Dictionary<string, object>();
+                }
+
+                sqlConnection.Close();
+                return osoby.First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex);
+            }
+
+            return null;
         }
 
         public static int getAdresId(Adres adres)
@@ -161,7 +236,7 @@ namespace BazyDanychProjekt
             return 0;
         }
 
-        public static void addOsoba(Osoba osoba)
+        public static bool addOsoba(Osoba osoba)
         {
             MySqlConnection sqlConnection = new MySqlConnection(connectionString);
             try
@@ -180,6 +255,7 @@ namespace BazyDanychProjekt
             }
             catch (Exception ex)
             {
+                return false;
                 Console.WriteLine("Exception: " + ex);
             }
             finally
@@ -189,6 +265,7 @@ namespace BazyDanychProjekt
                     sqlConnection.Close();
                 }
             }
+            return true;
         }
 
         public static int getIdOsoby(Osoba osoba)
@@ -216,6 +293,40 @@ namespace BazyDanychProjekt
             }
 
             return 0;
+        }
+
+        public static Osoba getOsoba(int id)
+        {
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+            MySqlDataReader reader = null;
+            try
+            {
+                sqlConnection.Open();
+                String sql = "select * from osoby where idOsoby="+ id.ToString();
+                MySqlCommand cmd = new MySqlCommand(sql, sqlConnection);
+                reader = cmd.ExecuteReader();
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                List<Osoba> osoby = new List<Osoba>();
+                while (reader.Read())
+                {
+                    for (int lp = 0; lp < reader.FieldCount; lp++)
+                    {
+                        dict.Add(reader.GetName(lp), reader.GetValue(lp));
+                    }
+                    Osoba tmp = new Osoba(dict);
+                    osoby.Add(tmp);
+                    dict = new Dictionary<string, object>();
+                }
+
+                sqlConnection.Close();
+                return osoby.First();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex);
+            }
+
+            return null;
         }
 
         public static List<Pojazd> getListaPojazdow()
@@ -279,7 +390,7 @@ namespace BazyDanychProjekt
             return 0;
         }
 
-        public static void editPojazd(Pojazd pojazd)
+        public static bool editPojazd(Pojazd pojazd)
         {
             MySqlConnection sqlConnection = new MySqlConnection(connectionString);
             try
@@ -299,6 +410,7 @@ namespace BazyDanychProjekt
             {
                 MessageBox.Show("Błąd bazy!");
                 Console.WriteLine("Exception: " + ex);
+                return false;
             }
             finally
             {
@@ -308,6 +420,7 @@ namespace BazyDanychProjekt
                     sqlConnection.Close();
                 }
             }
+            return true;
         }
 
         public static void editZamowienie(Zamowienie zamowienie)

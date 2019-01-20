@@ -24,7 +24,7 @@
         <Button HorizontalAlignment="Left" Height="37" FontSize="20" Margin="162.5,223,0,0" Content="Dodaj Adres" VerticalAlignment="Top" Width="180" Grid.Column="1" Click="Button_Click_2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,223,0,0" FontSize="20" TextWrapping="Wrap" Text="Miejsce Doręczenia" VerticalAlignment="Top" Height="37" Width="290" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,267,0,0" FontSize="20" TextWrapping="Wrap" Text="Waga Paczki" VerticalAlignment="Top" Height="37" Width="290" Grid.ColumnSpan="2"/>
-        <Button HorizontalAlignment="Left" Height="37" FontSize="20" Margin="10,351,0,0" Content="Zapłać" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Click="Button_Click_1"/>
+        <Button HorizontalAlignment="Left" Height="37" FontSize="20" Margin="10,351,0,0" Content="Zapłać" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2"/>
         <Button HorizontalAlignment="Left" Height="37" FontSize="20" Margin="162.5,351,0,0" Content="Wyślij Zamówienie" VerticalAlignment="Top" Width="180" Grid.Column="1" Click="Button_Click_3"/>
         <TextBox x:Name="wagaPaczkiTextBox" HorizontalAlignment="Left" Height="37" FontSize="20" Margin="163,267,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="126" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Margin="294,267,0,0" FontSize="20" TextWrapping="Wrap" Text="Kg" VerticalAlignment="Top" Height="37" Width="44" Grid.Column="1"/>

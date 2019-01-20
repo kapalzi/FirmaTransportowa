@@ -18,11 +18,9 @@ namespace BazyDanychProjekt
     public class Menu : Window
     {
         public List<Zamowienie> listaZamowien;
-        String userLogin;
 
         public Menu()
         {
-           // this.userLogin = login;
         }
 
         private bool AreOrdersForUser()

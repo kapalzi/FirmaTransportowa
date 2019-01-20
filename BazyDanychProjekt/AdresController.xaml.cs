@@ -19,31 +19,70 @@ namespace BazyDanychProjekt
     {
         ZamowienieController cont;
         int mode;
+        Adres adres;
 
         public AdresController(ZamowienieController controller, int mode)
         {
             this.cont = controller;
             this.mode = mode;
             InitializeComponent();
+
+            if (mode == 0 && cont.osoba.idAdresu != 0)
+            {
+                adres = DBController.getAdres(cont.osoba.idAdresu);
+                miejscowoscTextBox.Text = adres.miejscowosc;
+                kodPocztowyTextBox.Text = adres.kodPocztowy;
+                ulicaTextBox.Text = adres.ulica;
+                nrDomuTextBox.Text = adres.nrDomu;
+                nrMieszkaniaTextBox.Text = adres.nrMieszkania.ToString();
+            }
+            else if (mode == 1 && cont.zamowienie.idAdresuOdbioru != 0)
+            {
+                adres = DBController.getAdres(cont.zamowienie.idAdresuOdbioru);
+                miejscowoscTextBox.Text = adres.miejscowosc;
+                kodPocztowyTextBox.Text = adres.kodPocztowy;
+                ulicaTextBox.Text = adres.ulica;
+                nrDomuTextBox.Text = adres.nrDomu;
+                nrMieszkaniaTextBox.Text = adres.nrMieszkania.ToString();
+            }
+            else if (mode == 2 && cont.zamowienie.idAdresuDoreczenia != 0)
+            {
+                adres = DBController.getAdres(cont.zamowienie.idAdresuDoreczenia);
+                miejscowoscTextBox.Text = adres.miejscowosc;
+                kodPocztowyTextBox.Text = adres.kodPocztowy;
+                ulicaTextBox.Text = adres.ulica;
+                nrDomuTextBox.Text = adres.nrDomu;
+                nrMieszkaniaTextBox.Text = adres.nrMieszkania.ToString();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Adres adres = new Adres(ulicaTextBox.Text, nrDomuTextBox.Text, Int32.Parse(nrMieszkaniaTextBox.Text), kodPocztowyTextBox.Text, miejscowoscTextBox.Text);
-            DBController.addAdres(adres);
-            if(mode == 0)
+            try
             {
-                cont.nowaOsoba.idAdresu = DBController.getAdresId(adres);
+                Adres nowyAdres = new Adres(ulicaTextBox.Text, nrDomuTextBox.Text, Int32.Parse(nrMieszkaniaTextBox.Text), kodPocztowyTextBox.Text, miejscowoscTextBox.Text);
+                DBController.addAdres(nowyAdres);
+                if (mode == 0)
+                {
+                    cont.osoba.idAdresu = DBController.getAdresId(nowyAdres);
+                }
+                else if (mode == 1)
+                {
+                    cont.zamowienie.idAdresuOdbioru = DBController.getAdresId(nowyAdres);
+                }
+                else
+                {
+                    cont.zamowienie.idAdresuDoreczenia = DBController.getAdresId(nowyAdres);
+                }
+
+                Close();
             }
-            else if (mode == 1)
+            catch (Exception ex)
             {
-                cont.noweZamowienie.idAdresuOdbioru = DBController.getAdresId(adres);
-            } else
-            {
-                cont.noweZamowienie.idAdresuDoreczenia = DBController.getAdresId(adres);
+                MessageBox.Show("Zły format danych!");
             }
-            
-            Close();
+
+ 
         }
     }
 }
